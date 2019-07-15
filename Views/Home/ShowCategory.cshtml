@@ -1,0 +1,29 @@
+@using ProductsAndCategories.Models
+@model Category
+
+<h1 style="text-align: center;">@Model.CategoryName</h1>
+
+<h2 style="text-align: center;">Products</h2>
+@foreach (var prod in @Model.Associations)
+{
+    <p style="text-align: center;">@prod.AssociationProduct.ProductName</p>
+}
+
+
+<h2 style="text-align: center;">Add Product:</h2>
+    <div style="text-align: center;">
+        <form action="/add/product" method="POST">
+            <select style="color: black;" name="ProductId">
+                @foreach (var p in ViewBag.AllProducts)
+                {
+                    <option style="color: black;" value="@p.ProductId">@p.ProductName</option>
+                }
+            </select>
+            <input type="hidden" name="CategoryId" value="@Model.CategoryId">
+
+            <input type="submit" class="btn btn-primary">
+        </form>
+    </div>
+
+    <a href="/categories"><button class="btn btn-primary">Go Back</button></a>
+

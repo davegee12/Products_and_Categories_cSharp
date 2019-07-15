@@ -1,0 +1,26 @@
+@using ProductsAndCategories.Models
+@model Category
+
+<h1 style="text-align: center;">Welcome to Products and Categories</h1>
+<h2 style="text-align: center;">
+    <a href="/products">Products</a> | Categories
+</h2>
+
+<h3 style="text-align: center;">New Category</h3>
+
+<form asp-action="CreateCategory" asp-controller="Home" method="post">
+    <div class="form-group">
+        <span style="color: red;" asp-validation-for="CategoryName"></span>
+        <label asp-for="CategoryName" for="exampleInputEmail1">Category Name:</label>
+        <input asp-for="CategoryName" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter category">
+    </div>
+    <p class="text-center"><button type="submit" class="btn btn-primary">Create</button></p>
+</form>
+
+<h3 style="text-align: center;">Existing Categories</h3>
+<div style="border: 2px solid black">
+@foreach (var cat in @ViewBag.AllCategories)
+{
+    <h5 style="text-align: center; border: 1px dotted pink;"> <a href="/categories/@cat.CategoryId">@cat.CategoryName</a> </h5> <br>
+}
+</div>
